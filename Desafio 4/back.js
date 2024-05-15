@@ -1,8 +1,8 @@
-"use strict"
+"use strict";
 
 // Registro
 let nombre;
-let gmail; 
+let gmail;
 let contraseña;
 function registroUsuario(){
     nombre = prompt("¿Cuál es tu nombre?")
@@ -10,7 +10,7 @@ function registroUsuario(){
     contraseña= prompt("¿Ingre una contraseña?")
     alert("Su nombre es: " + nombre + " y gmail: " + gmail);
 }
-registroUsuario();
+document.getElementById('btnRegistro').addEventListener('click', registroUsuario);
 
 //Iniciar Sesion
 let gmailIngresado;
@@ -24,10 +24,10 @@ function inicioSesion(){
         alert("Ingres un GMAIL o Contraseña valida")
     }
 }
-inicioSesion()
+document.getElementById('btnInicioSesion').addEventListener('click', inicioSesion);
 
 //Actualizar CONTRASEÑA
-let contraseñaNueva
+let contraseñaNueva;
 function actualizarContraseña(){
     gmailIngresado= prompt("Ingrese el Email")
     contraseña = prompt("Ingre la contraseña")
@@ -38,11 +38,5 @@ function actualizarContraseña(){
     }else{
         alert("Ingres un GMAIL o Contraseña valida")
     }
-    
 }
-actualizarContraseña()
-
-
-
-
-
+document.getElementById('btnActualizarContrasena').addEventListener('click', actualizarContraseña);
