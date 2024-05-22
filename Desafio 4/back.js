@@ -4,11 +4,19 @@
 let nombre;
 let gmail;
 let contraseña;
+let usuarios =[];
 function registroUsuario(){
     nombre = prompt("¿Cuál es tu nombre?")
     gmail= prompt("¿Cuál es tu email?")
     contraseña= prompt("¿Ingre una contraseña?")
     alert("Su nombre es: " + nombre + " y gmail: " + gmail);
+    let nuevoUsuario ={
+        usuario:nombre,
+        gmail:gmail,
+        contraseña:contraseña
+    }
+    usuarios.push(nuevoUsuario)
+    console.log(nuevoUsuario)
 }
 document.getElementById('btnRegistro').addEventListener('click', registroUsuario);
 
@@ -18,10 +26,16 @@ let contraseñaIngresada;
 function inicioSesion(){
     gmailIngresado= prompt("Ingrese el Email")
     contraseñaIngresada= prompt("Ingre la contraseña")
-    if(gmail == gmailIngresado && contraseña ==contraseñaIngresada){
-        alert("Hola Bienvenido " + nombre)
-    }else{
-        alert("Ingres un GMAIL o Contraseña valida")
+
+    let usuarioEncotnrado = false;
+    for(let i=0; i<usuarios.length; i++){
+        if(usuarios[i].gmail == gmailIngresado && usuarios[i].contraseña == contraseñaIngresada){
+            alert("Hola Bienvenido " + usuarios[i].nombre)
+
+        }
+    }
+    if(!usuarioEncotnrado){
+    alert("Ingres un GMAIL o Contraseña valida")
     }
 }
 document.getElementById('btnInicioSesion').addEventListener('click', inicioSesion);
@@ -29,14 +43,21 @@ document.getElementById('btnInicioSesion').addEventListener('click', inicioSesio
 //Actualizar CONTRASEÑA
 let contraseñaNueva;
 function actualizarContraseña(){
-    gmailIngresado= prompt("Ingrese el Email")
-    contraseña = prompt("Ingre la contraseña")
-    if(gmail == gmailIngresado && contraseña ==contraseñaIngresada){
-        contraseñaNueva= prompt("Ingre la nueva contraseña")
-        contraseña = contraseñaNueva;
-        alert(contraseña);
-    }else{
-        alert("Ingres un GMAIL o Contraseña valida")
+    let gmailIngresado = prompt("Ingrese el Email");
+    let contraseñaIngresada = prompt("Ingrese la contraseña");
+
+    let usuarioEncontrado = false;
+    for(let i = 0; i < usuarios.length; i++){
+        if(usuarios[i].gmail === gmailIngresado && usuarios[i].contraseña === contraseñaIngresada){
+            let contraseñaNueva = prompt("Ingrese la nueva contraseña");
+            usuarios[i].contraseña = contraseñaNueva;
+            alert("Contraseña actualizada");
+            usuarioEncontrado = true;
+            break;
+        }
+    }
+    if (!usuarioEncontrado) {
+        alert("Ingrese un GMAIL o Contraseña válida");
     }
 }
 document.getElementById('btnActualizarContrasena').addEventListener('click', actualizarContraseña);
